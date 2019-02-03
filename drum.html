@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<head><title>Drum JS</title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <div class = "keys"> 
+        <div data-key="65" class ="key">
+            <kbd>A</kbd>
+            <span class="sound">clap</span>
+            </div>
+    <div data-key="83" class ="key">
+        <kbd>S</kbd>
+        <span class="sound">hihat</span>
+    </div>
+    <div data-key="68" class ="key">
+            <kbd>D</kbd>
+            <span class="sound">kick</span>
+        </div>
+    <div data-key="70" class ="key">
+            <kbd>F</kbd>
+            <span class="sound">openhat</span>
+    </div>
+
+</div>
+<audio data-key="65" src = "./sounds/Crash-Cymbal-1.wav"></audio>
+<audio data-key="83" src = "./sounds/Closed-Hi-Hat-1.wav"></audio>
+<audio data-key="68" src = "./sounds/Bass-Drum-1.wav"></audio>
+    <script>
+        function playSound(e){
+            console.log(e.keyCode);
+            const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+            const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+            if(!audio)return; //stop the function
+            audio.currentTime=0; //rewinds to start 
+            audio.play();
+        }
+        window.addEventListener('keydown',playSound)
+    </script>
+</body>
+</html>
