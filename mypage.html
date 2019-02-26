@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>My page</title>
+</head>
+
+<body>
+
+	<style type="text/css">
+		
+		html{
+			background-color: rgb(184, 184, 61);
+		}
+		.inbox{
+			float: right;
+			min-width: 200px;
+			margin: 10px auto;
+			background-color: white;
+			box-shadow: 10px 10px 0 rgba(0,0,0,0.1);
+		}
+		.item{
+			display: flex;
+			align-items: center;
+			border-bottom: 1px solid #f1f1f1;
+
+		}
+		.item:last-child{
+			border-bottom: 0;
+		}
+
+		input[type = "checkbox"] {
+			margin: 20px;
+		}
+
+		input[type = "checkbox"]:checked +p {
+			text-decoration: line-through;
+
+		}
+
+		p{
+			margin:0;
+			padding: 10px;
+			transition: background 0.2s;
+			flex: 1;
+		}
+	</style>
+
+<div class = "inbox">
+	<div class="item">
+		<input type="checkbox">
+		<p>item1</p>
+	</div>
+	<div class="item">
+		<input type="checkbox">
+		<p>item2</p>
+	</div>
+	<div class="item">
+		<input type="checkbox">
+		<p>item3</p>
+	</div>
+	<div class="item">
+		<input type="checkbox">
+		<p>item4</p>
+	</div>
+	<div class="item">
+		<input type="checkbox">
+		<p>item5</p>
+	</div>
+</div>
+
+<script>
+		const checkboxes = document.querySelectorAll('.inbox input[type="checkbox"]');
+		let lastchecked;
+		function handle(e){
+
+			let inBetween = false;
+			if(e.shiftKey && this.checked ){
+
+			checkboxes.forEach(checkbox=>{
+				if(checkbox === this || checkbox === lastchecked){
+					inBetween = !inBetween;
+				}
+				if(inBetween){
+				checkbox.checked = true;
+			}
+		});
+	}
+		lastchecked = this;
+		}
+		checkboxes.forEach(checkbox => checkbox.addEventListener('click',handle));
+		
+	</script>
+
+</body>
+</html>
